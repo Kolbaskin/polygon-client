@@ -56,6 +56,8 @@ const client = new Polygon({
   */
 
   const device = await client.createDevice({
+    vendor_id: "2c6d53ef-7056-44ff-a4bf-0c68717eb31c",
+    model_id: "ae99c3a3-0595-4537-8f8a-94a8701c3078",
     device_id: "100000000000007",
     imei: "100000000000007",
     description: "Navitelecom test",
