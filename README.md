@@ -18,15 +18,48 @@ const client = new Polygon({
 });
 
 (async function () {
-  const deviceTypes = await client.getDeviceTypes();
+  const vendors = await client.getVendors();
 
-  console.log("deviceTypes:", deviceTypes);
+  console.log("vendors:", vendors);
+
+  /*
+  vendors: [
+    {
+      id: '2c6d53ef-7056-44ff-a4bf-0c68717eb31c',
+      name: 'Navitelecom',
+      address: '-',
+      country: 'RU'
+    },
+    {
+      id: 'cca8c7ca-2273-454e-bcba-884e426367a4',
+      name: 'Teltonika',
+      address: '-',
+      country: 'LT'
+    }
+  ]
+  */
+
+  const models = await client.getVendorModels(vendors[0].id);
+
+  console.log("models:", models);
+
+  /*
+  [
+    {
+      id: 'ae99c3a3-0595-4537-8f8a-94a8701c3078',
+      model_name: 'Navitelecom',
+      model_number: '1',
+      manufacture_date: '2022-11-13T21:00:00.000Z',
+      protocols: [ 'Flex' ]
+    }
+  ]
+  */
 
   const device = await client.createDevice({
     device_id: "100000000000007",
     imei: "100000000000007",
     description: "Navitelecom test",
-    device_type: "Navitelecom",
+    protocol: "Flex",
     entity_type: "car"
   });
 
